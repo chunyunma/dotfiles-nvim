@@ -6,6 +6,6 @@ require('config.colorscheme')
 require('config.compe')
 
 -- snippets.nvim
-require('config.snippets')
+-- require('config.snippets')
 
 require('config.treesitter')
