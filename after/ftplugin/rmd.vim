@@ -3,9 +3,14 @@ setlocal autoindent
 setlocal tabstop=2
 setlocal softtabstop=2
 setlocal shiftwidth=2
+" setting filetype to tex to get the syntax highlight 
+augroup rmdtex
+	autocmd!
+	autocmd BufRead,BufNewFile,BufEnter */matrix_algebra/*.Rmd setlocal filetype=tex
+augroup END
 
 "
-" different highlight for latex inside rmarkdown file
+" highlight for latex inside rmarkdown file
 "
 function! Math()
     "" Define certain regions
@@ -20,4 +25,4 @@ function! Math()
 endfunction
 
 " Call everytime we open an rmarkdown file
-autocmd BufRead,BufNewFile,BufEnter *.Rmd,*.rmarkdown, call Math()
+autocmd BufRead,BufNewFile,BufEnter */baby-modern-dive/*.Rmd,*/baby-modern-dive/*.rmarkdown call Math()
