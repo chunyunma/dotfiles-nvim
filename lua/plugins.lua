@@ -3,6 +3,10 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
+    -- autocomplete
+    use {'SirVer/ultisnips'}
+    use {'honza/vim-snippets'}
+
     use {'vim-pandoc/vim-pandoc'}
     use {'vim-pandoc/vim-pandoc-syntax'}
 
