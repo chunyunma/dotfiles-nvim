@@ -25,7 +25,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 vim.cmd [[packadd packer.nvim]]
 -- Auto compile when there are changes in plugins.lua
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile' 
+vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
 
 -- Install plugins
 require('plugins')

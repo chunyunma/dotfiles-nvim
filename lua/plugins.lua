@@ -3,6 +3,8 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
+    -- use {'iamcco/markdown-preview.nvim'}
+
     -- autocomplete
     use {'SirVer/ultisnips'}
     use {'honza/vim-snippets'}
@@ -43,6 +45,7 @@ return require('packer').startup(function(use)
 
     -- LSP config
     use {'neovim/nvim-lspconfig'}
+    use {'kabouzeid/nvim-lspinstall'}
     -- <https://github.com/hrsh7th/nvim-compe>
     use {'hrsh7th/nvim-compe'}
     -- <https://github.com/ncm2/float-preview.nvim>
