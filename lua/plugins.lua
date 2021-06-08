@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
     -- use {'KeitaNakamura/tex-conceal.vim'}
 
     -- To dianose syntax highlighting issues
-    use {'tpope/vim-scriptease'}
+    -- use {'tpope/vim-scriptease'}
 
     -- open url, temporary replacing gx
     use {'tyru/open-browser.vim'} 
