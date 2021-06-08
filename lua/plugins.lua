@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
     -- use {'tpope/vim-scriptease'}
 
     -- open url, temporary replacing gx
-    use {'tyru/open-browser.vim'} 
+    use {'tyru/open-browser.vim'}
 
     -- Development
     use {'tpope/vim-surround'}
@@ -65,7 +65,7 @@ return require('packer').startup(function(use)
     use{ 'guns/vim-sexp'}
     use {'tpope/vim-sexp-mappings-for-regular-people'}
 
-    -- navigate tmux 
+    -- navigate tmux
     use {'christoomey/vim-tmux-navigator'}
 
     -- vim-slime to work with tmux

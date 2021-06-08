@@ -58,7 +58,7 @@ o.completeopt = 'menuone,noselect'
 --     autocmd BufNewFile,BufRead *.json setlocal syntax=off
 -- augroup END
 -- ]], false)
--- 
+--
 -- vim.api.nvim_exec([[
 -- augroup auto_term
 --     autocmd!
@@ -66,13 +66,13 @@ o.completeopt = 'menuone,noselect'
 --     autocmd TermOpen * startinsert
 -- augroup END
 -- ]], false)
--- 
+--
 -- vim.api.nvim_exec([[
 --     fun! TrimWhitespace()
 --         let l:save = winsaveview()
 --         keeppatterns %s/\s\+$//e
 --         call winrestview(l:save)
 --     endfun
--- 
+--
 --     autocmd BufWritePre * :call TrimWhitespace()
 -- ]], false)
