@@ -11,3 +11,4 @@ utils.map('n', '<C-L>', '<C-W><C-L>')
 
 utils.map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undo-friendly
 utils.map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undo-friendly
+
