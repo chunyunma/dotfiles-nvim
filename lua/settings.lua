@@ -36,7 +36,6 @@ o.undoreload = 10000
 -- o.completeopt = 'preview,menuone,noselect'
 o.completeopt = 'menuone,noselect'
 
-
 -- Highlight on yank
 -- vim.cmd 'au TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
 
