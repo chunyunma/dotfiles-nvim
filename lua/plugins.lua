@@ -11,6 +11,8 @@ return require('packer').startup(function(use)
     use {'vim-pandoc/vim-pandoc-syntax'}
 
     use {'lervag/vimtex'}
+    -- use {'lervag/vimtex', tag='v1.6'}
+    -- use {'KeitaNakamura/tex-conceal.vim'}
 
     -- To dianose syntax highlighting issues
     use {'tpope/vim-scriptease'}
