@@ -123,7 +123,6 @@ return require('packer').startup(function(use)
   -- better language parser (syntax highlight)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
-  -- use {'rmagatti/auto-session'}
   -- use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins'} -- python related
   -- use {'zchee/deoplete-jedi'} -- python related
   -- use {'Shougo/deoplete-lsp'} -- python related
