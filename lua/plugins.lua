@@ -3,7 +3,8 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    -- use {'iamcco/markdown-preview.nvim'}
+    -- <https://github.com/p00f/nvim-ts-rainbow>
+    use {'p00f/nvim-ts-rainbow'}
 
     -- autocomplete
     use {'SirVer/ultisnips'}
