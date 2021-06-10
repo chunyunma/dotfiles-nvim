@@ -1,4 +1,5 @@
 -- Configuration for nvim-compe
+-- <https://github.com/crivotz/nv-ide/blob/master/lua/settings/completion.lua>
 local utils = require('utils')
 
 vim.cmd [[set shortmess+=c]]
