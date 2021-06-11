@@ -6,7 +6,9 @@ setlocal shiftwidth=2
 " setting filetype to tex to get the syntax highlight 
 augroup rmdtex
 	autocmd!
-	autocmd BufRead,BufNewFile,BufEnter */matrix_algebra/*.Rmd setlocal filetype=tex
+	autocmd BufRead,BufNewFile,BufEnter 
+				\ */matrix_algebra/*.Rmd,*/statistical_learning/*.Rmd 
+				\ setlocal filetype=tex
 augroup END
 
 "
