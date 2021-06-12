@@ -5,4 +5,5 @@ let g:UltiSnipsJumpForwardTrigger='<c-j>'
 let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 " use both default and customized snippets
 " let g:UltiSnipsSnippetDirectories=["UltiSnips", "my_snippets"]
+" use only customized snippets
 let g:UltiSnipsSnippetDirectories=[$XDG_CONFIG_HOME.'/nvim/my_snippets']

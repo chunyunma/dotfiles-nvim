@@ -53,6 +53,7 @@ def add_row(snip):
 
 endglobal
 
+# template
 snippet template "Basic template" b
 \documentclass[a4paper,12pt]{article}
 
@@ -78,6 +79,7 @@ snippet beg "begin{} / end{}" b
 endsnippet
 
 # quick matrix
+priority 100
 pre_expand "create_matrix(snip)"
 snippet "(small|[bBpvV])?mat(rix)?(\d+)x(\d+)" "Generate (small|[bBpvV])?matrix of *rows* by *columns*" br
 endsnippet
@@ -101,17 +103,26 @@ endsnippet
 snippet dm "Math" wA
 \[
 $1
-\] $0
+\] 
+$0
+endsnippet
+
+snippet dd "Math" w
+$$
+$1
+$$ 
+$0
 endsnippet
 
 # super- and sub-script
+priority -20
 context "math()"
-snippet '([A-Za-z])(\d)' "auto subscript" wrA
+snippet '([A-Za-z])(\d)' "auto subscript" wr
 `!p snip.rv = match.group(1)`_`!p snip.rv = match.group(2)`
 endsnippet
 
 context "math()"
-snippet '([A-Za-z])_(\d\d)' "auto subscript2" wrA
+snippet '([A-Za-z])_(\d\d)' "auto subscript2" wr
 `!p snip.rv = match.group(1)`_{`!p snip.rv = match.group(2)`}
 endsnippet
 
@@ -167,18 +178,38 @@ snippet ... "ldots" iA
 endsnippet
 
 # not equal
-snippet != "equals" iA
+snippet != "equals" i
 \neq 
+endsnippet
+
+# operator
+snippet opt "\operatorname{}" i
+\operatorname{$1}($2)$0
 endsnippet
 
 # determinant
 snippet det "det()" i
-\operatorname{det}(\mathbf{$1})$0
+\operatorname{det}($1)$0
 endsnippet
 
+# rank
+snippet rank "det()" i
+\operatorname{rank}($1)$0
+endsnippet
 
 # math font
 snippet mb "\mathbf{}" i
 \mathbf{$1}$0
 endsnippet
 
+snippet mba "\mathbf{}" i
+\mathbf{A}
+endsnippet
+
+snippet mbb "\mathbf{}" i
+\mathbf{B}
+endsnippet
+
+snippet mbc "\mathbf{}" i
+\mathbf{C}
+endsnippet
