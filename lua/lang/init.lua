@@ -79,6 +79,23 @@ local lua_settings = {
   }
 }
 
+-- local r_settings = {
+	-- turn off diagnostics completely
+	-- diagnostics = false,
+-- }
+
+local r_handlers = {
+	["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics, {
+		underline = true,
+		signs = true,
+		update_in_insert = true,
+		-- Disable virtual_text
+		virtual_text = false,
+	}),
+}
+
+
 -- config that activates keymaps and enables snippet support
 local function make_config()
   local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -102,11 +119,8 @@ local function make_config()
     capabilities = capabilities,
     -- map buffer local keybindings when the language server attaches
     on_attach = on_attach,
-    -- autostart = false,
   }
 end
-
-
 
 -- lsp-install
 local function setup_servers()
@@ -114,6 +128,8 @@ local function setup_servers()
 
   -- get all installed servers
   local servers = require'lspinstall'.installed_servers()
+  -- ... add manually installed servers
+  table.insert(servers, "r_language_server")
 
   for _, server in pairs(servers) do
     local config = make_config()
@@ -121,6 +137,11 @@ local function setup_servers()
     -- language specific config
     if server == "lua" then
       config.settings = lua_settings
+    end
+
+    if server == "r_language_server" then
+	-- config.settings = r_settings
+	config.handlers = r_handlers
     end
 
     require'lspconfig'[server].setup(config)
