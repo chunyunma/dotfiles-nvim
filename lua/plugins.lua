@@ -3,6 +3,9 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
+    use {'nvim-lua/plenary.nvim'} -- required by nvim-reload
+    use {'famiu/nvim-reload'}
+
     -- <https://github.com/p00f/nvim-ts-rainbow>
     use {'p00f/nvim-ts-rainbow'}
 
