@@ -6,8 +6,8 @@ local wo = vim.wo
 local bo = vim.bo
 local indent = 4
 
-cmd 'syntax enable'
-cmd 'filetype plugin indent on'
+cmd('syntax enable')
+cmd('filetype plugin indent on')
 
 bo.tabstop = indent
 bo.softtabstop = indent
