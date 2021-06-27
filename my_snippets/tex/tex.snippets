@@ -33,7 +33,7 @@ def create_matrix(snip):
 
         final_str += " \\\\\\\n"
 
-    final_str += old_spacing + "\\end{"+matrix_str+"}\n$0"
+    final_str += old_spacing + "\\end{"+matrix_str+"}$0"
 
     snip.expand_anon(final_str)
 
