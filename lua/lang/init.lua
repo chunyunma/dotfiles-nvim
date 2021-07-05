@@ -87,9 +87,9 @@ local lua_settings = {
 local r_handlers = {
 	["textDocument/publishDiagnostics"] = vim.lsp.with(
 	vim.lsp.diagnostic.on_publish_diagnostics, {
-		underline = true,
+		underline = false,
 		signs = true,
-		update_in_insert = true,
+		update_in_insert = false,
 		-- Disable virtual_text
 		virtual_text = false,
 	}),
