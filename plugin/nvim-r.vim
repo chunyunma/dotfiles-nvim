@@ -8,7 +8,7 @@ let R_path = '/Library/Frameworks/R.framework/Versions/Current/Resources/bin'
 let R_args = ['--no-save', '--quiet']
 " quick insert chunk delimiter in rmd with two instead of one backticks
 let R_rmdchunk = '``'
-let R_assign = 3
+let R_assign = 0
 nmap <LocalLeader>: :RSend 
 " use visidata to view data frames
 let R_csv_app = 'terminal:vd'
