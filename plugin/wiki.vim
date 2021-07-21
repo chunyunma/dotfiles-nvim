@@ -33,7 +33,7 @@ endfunction
 
 " mnemonic link zettel
 inoremap <expr> <c-l>z fzf#vim#complete({
-  \ 'source':  'rg --no-heading --smart-case  .',
+  \ 'source':  'rg --no-heading --smart-case --no-require-git .',
   \ 'reducer': function('<sid>make_note_link'),
   \ 'options': '--multi --reverse --margin 15%,0',
   \ 'up':    10})

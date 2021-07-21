@@ -7,7 +7,7 @@ nnoremap <silent> <Leader>f :Rg<CR>
 " only search content not file name
 command! -bang -nargs=* Rg call 
 	\fzf#vim#grep("rg --column --line-number --no-heading --follow 
-	\--color=always --smart-case ".shellescape(<q-args>), 1, 
+	\--color=always --smart-case --no-require-git ".shellescape(<q-args>), 1, 
 	\{'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " use the silver searcher instead of rg to do full text search;
