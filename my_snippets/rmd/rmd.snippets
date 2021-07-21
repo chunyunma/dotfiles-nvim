@@ -146,7 +146,14 @@ snippet td "superscript" iA
 ^{$1}$0
 endsnippet
 
+
 # postfix
+priority 10
+context "math()"
+snippet "bar" "bar" riA
+\overline{$1}$0
+endsnippet
+
 priority 10
 context "math()"
 snippet "hat" "hat" riA
@@ -157,6 +164,12 @@ priority 100
 context "math()"
 snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])bar" "bar" riA
+\overline{`!p snip.rv=match.group(1)`}
 endsnippet
 
 # fraction
@@ -193,7 +206,7 @@ snippet det "det()" i
 endsnippet
 
 # rank
-snippet rank "det()" i
+snippet rank "rank()" i
 \operatorname{rank}($1)$0
 endsnippet
 
@@ -206,14 +219,14 @@ snippet mbbb "\mathbb{}" i
 \mathbb{$1}$0
 endsnippet
 
-snippet mba "\mathbf{}" i
+snippet mba "\mathbf{A}" i
 \mathbf{A}
 endsnippet
 
-snippet mbb "\mathbf{}" i
+snippet mbb "\mathbf{B}" i
 \mathbf{B}
 endsnippet
 
-snippet mbc "\mathbf{}" i
+snippet mbc "\mathbf{C}" i
 \mathbf{C}
 endsnippet
