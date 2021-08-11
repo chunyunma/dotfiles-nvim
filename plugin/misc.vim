@@ -11,6 +11,6 @@ augroup END
 " automatically loadview
 augroup AutoFold
 	autocmd!
-	autocmd BufWinEnter ?* silent loadview | filetype detect
+	autocmd BufWinEnter ?* silent! loadview | filetype detect
 augroup END
 
