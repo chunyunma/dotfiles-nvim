@@ -7,3 +7,10 @@ augroup vimrc-incsearch-highlight
 	autocmd CmdlineEnter /,\? :set hlsearch
 	autocmd CmdlineLeave /,\? :set nohlsearch
 augroup END
+
+" automatically loadview
+augroup AutoFold
+	autocmd!
+	autocmd BufWinEnter ?* silent loadview | filetype detect
+augroup END
+
