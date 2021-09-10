@@ -12,8 +12,9 @@ cmd('filetype plugin indent on')
 bo.tabstop = indent
 bo.softtabstop = indent
 bo.shiftwidth = indent
--- bo.expandtab = true
-bo.smartindent = true
+bo.expandtab = true
+-- bo.smartindent = true
+-- bo.autoindent = true
 o.hidden = true
 o.ignorecase = true
 o.smartcase = true

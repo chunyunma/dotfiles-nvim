@@ -26,3 +26,6 @@ command RStart let oldft=&ft | set ft=r | exe 'set ft='.oldft |
 " <https://github.com/jalvesaq/Nvim-R/issues/559>
 " show help in horizontal split
 let R_nvimpager = "horizontal"
+" don't indent
+let r_indent_align_args = 0
+
