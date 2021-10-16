@@ -3,9 +3,8 @@ return require('packer').startup(function(use)
     -- Packer can manage itself as an optional plugin
     use {'wbthomason/packer.nvim', opt = true}
 
-    -- too buggy, disabled for now
-    -- use {'nvim-lua/plenary.nvim'} -- required by nvim-reload
-    -- use {'famiu/nvim-reload'}
+    use {'nvim-lua/plenary.nvim'} -- required by nvim-reload
+    use {'famiu/nvim-reload'}
 
     -- <https://github.com/p00f/nvim-ts-rainbow>
     use {'p00f/nvim-ts-rainbow'}
@@ -95,13 +94,13 @@ return require('packer').startup(function(use)
     use {'jalvesaq/Nvim-R', branch = 'master'}
 
     -- Status line
-    -- <https://github.com/hoob3rt/lualine.nvim>
-    use {'hoob3rt/lualine.nvim',
+    -- <https://github.com/shadmansaleh/lualine.nvim>
+    use {'shadmansaleh/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
       require('lualine').setup{
         options = {
-          theme = 'gruvbox_material',
+          theme = 'gruvbox-material',
           section_separators = {'', ''},
           component_separators = {'', ''},
           disabled_filetypes = {},
