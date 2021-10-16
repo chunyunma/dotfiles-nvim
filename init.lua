@@ -6,8 +6,10 @@ vim.g.netrw_banner = 0
 -- temporary fix for the gx bug
 vim.g.netrw_nogx=1
 
-vim.g.python3_host_prog='/Users/chunyun/.pyenv/versions/neovim/bin/python'
-vim.g.python_host_prog='/Users/chunyun/.pyenv/versions/neovim-py2/bin/python'
+if vim.fn.has('macunix') then
+	vim.g.python3_host_prog='/Users/chunyun/.pyenv/versions/neovim/bin/python'
+	vim.g.python_host_prog='/Users/chunyun/.pyenv/versions/neovim-py2/bin/python'
+end
 
 vim.g.sessionoptions="curdir,folds,resize,winsize"
 
