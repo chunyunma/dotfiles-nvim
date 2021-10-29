@@ -95,7 +95,7 @@ return require('packer').startup(function(use)
 
     -- Status line
     -- <https://github.com/shadmansaleh/lualine.nvim>
-    use {'shadmansaleh/lualine.nvim',
+    use {'nvim-lualine/lualine.nvim',
     requires = {'kyazdani42/nvim-web-devicons', opt = true},
     config = function()
       require('lualine').setup{
