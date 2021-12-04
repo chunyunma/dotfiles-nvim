@@ -23,9 +23,6 @@ return require('packer').startup(function(use)
     -- To dianose syntax highlighting issues
     -- use {'tpope/vim-scriptease'}
 
-    -- open url, temporary replacing gx
-    use {'tyru/open-browser.vim'}
-
     -- Development
     use {'tpope/vim-surround'}
     use {'wellle/targets.vim'}
@@ -46,14 +43,6 @@ return require('packer').startup(function(use)
 
     -- easy git
     use {'tpope/vim-fugitive'}
-
-    -- LSP config
-    use {'neovim/nvim-lspconfig'}
-    use {'kabouzeid/nvim-lspinstall'}
-    -- <https://github.com/hrsh7th/nvim-compe>
-    use {'hrsh7th/nvim-compe'}
-    -- <https://github.com/ncm2/float-preview.nvim>
-    use {'ncm2/float-preview'}
 
     -- Lua development
     -- <https://github.com/tjdevries/nlua.nvim>
@@ -126,6 +115,53 @@ return require('packer').startup(function(use)
       }
     end
   }
+
+  --
+  -- volatile section
+  --
+
+    -- LSP config
+    use {'neovim/nvim-lspconfig'}
+    use {'kabouzeid/nvim-lspinstall'}
+
+    -- autocomplete
+    use {'SirVer/ultisnips'}
+    use {'honza/vim-snippets'}
+
+    -- -- <https://github.com/hrsh7th/nvim-compe>
+    -- use {'hrsh7th/nvim-compe'}
+    -- -- <https://github.com/ncm2/float-preview.nvim>
+    -- use {'ncm2/float-preview'}
+    -- new cmp
+    -- use "tamago324/cmp-zsh" -- look this one up
+    use {
+        "onsails/lspkind-nvim",
+        config = function()
+            require("lspkind").init()
+        end,
+    }
+
+    use {
+      "hrsh7th/nvim-cmp",
+      requires = {
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "quangnguyen30192/cmp-nvim-ultisnips",
+	'quangnguyen30192/cmp-nvim-tags',
+        "hrsh7th/cmp-nvim-lua",
+        -- "octaltree/cmp-look",
+        "hrsh7th/cmp-path",
+        -- "hrsh7th/cmp-calc",
+        "f3fora/cmp-spell",
+        -- "hrsh7th/cmp-emoji",
+        "ray-x/cmp-treesitter",
+        "hrsh7th/cmp-cmdline",
+        "hrsh7th/cmp-nvim-lsp-document-symbol",
+      },
+      config = function()
+        require("config.cmp").setup()
+      end,
+    }
 
   -- better language parser (syntax highlight)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
