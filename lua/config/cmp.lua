@@ -163,7 +163,9 @@ function M.setup()
     completion = {
 	    completeopt = "menu,menuone,noinsert",
 	    keyword_length = 1,
-		get_trigger_characters = function(trigger_characters)
+      -- Not sure about this part
+      -- <https://www.reddit.com/r/neovim/comments/pzxni6/comment/hf4f1wk/?utm_source=share&utm_medium=web2x&context=3>
+      get_trigger_characters = function(trigger_characters)
             if vim.bo.filetype == "r" or vim.bo.filetype == "rmd" then
                 table.insert(trigger_characters, "$")
             end
