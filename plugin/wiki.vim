@@ -5,7 +5,9 @@
 " wiki note related mapping
 " Quickly create a new zk note
 command! -nargs=1 NewZettel :execute ":sp" $ZK_DIR . strftime("%Y%m%d%H%M") . "-<args>.md"
+command! -nargs=1 NewZettelv :execute ":vs" $ZK_DIR . strftime("%Y%m%d%H%M") . "-<args>.md"
 nnoremap <leader>zn :NewZettel 
+nnoremap <leader>zv :NewZettelv 
 
 " Generate ctags
 nnoremap <leader>zt :!ctags -R --exclude=README.md . <CR>
