@@ -118,7 +118,7 @@ return require('packer').startup(function(use)
 
     -- LSP config
     use {'neovim/nvim-lspconfig'}
-    use {'kabouzeid/nvim-lspinstall'}
+    use {'williamboman/nvim-lsp-installer'}
 
     -- autocomplete
     use {'SirVer/ultisnips'}
@@ -143,7 +143,7 @@ return require('packer').startup(function(use)
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "quangnguyen30192/cmp-nvim-ultisnips",
-	'quangnguyen30192/cmp-nvim-tags',
+        'quangnguyen30192/cmp-nvim-tags',
         "hrsh7th/cmp-nvim-lua",
         -- "octaltree/cmp-look",
         "hrsh7th/cmp-path",

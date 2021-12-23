@@ -1,5 +1,6 @@
 -- Most of this file was adpated from here
--- <https://github.com/kabouzeid/nvim-lspinstall/wiki>
+-- <https://github.com/kabouzeid/nvim-lspinstall/wiki> and
+-- <https://github.com/williamboman/nvim-lsp-installer/wiki/Advanced-Configuration>
 
 -- Your custom attach function for nvim-lspconfig goes here.
 local on_attach = function(client, bufnr)
@@ -55,8 +56,6 @@ local on_attach = function(client, bufnr)
     end
 end
 
--- require'snippets'.use_suggested_mappings(true) -- for snippets.vim
-
 -- Configure lua language server for neovim development
 local lua_settings = {
   Lua = {
@@ -71,89 +70,102 @@ local lua_settings = {
     },
     workspace = {
       -- Make the server aware of Neovim runtime files
-      library = {
+    library = {
         [vim.fn.expand('$VIMRUNTIME/lua')] = true,
         [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
       },
     },
-  }
+  },
 }
-
--- local r_settings = {
-	-- turn off diagnostics completely
-	-- diagnostics = false,
--- }
-
-local r_handlers = {
-	["textDocument/publishDiagnostics"] = vim.lsp.with(
-	vim.lsp.diagnostic.on_publish_diagnostics, {
-		underline = false,
-		signs = true,
-		update_in_insert = false,
-		-- Disable virtual_text
-		virtual_text = false,
-	}),
-}
-
 
 -- config that activates keymaps and enables snippet support
-local function make_config()
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  -- Code actions
-  capabilities.textDocument.codeAction = {
-	  -- dynamicRegistration = true
-	  dynamicRegistration = false,
-	  codeActionLiteralSupport = {
-		  codeActionKind = {
-			  valueSet = (function()
-				  local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
-				  table.sort(res)
-				  return res
-			  end)()
-		  }
-	  }
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+-- Code actions
+capabilities.textDocument.codeAction = {
+  -- dynamicRegistration = true
+  dynamicRegistration = false,
+  codeActionLiteralSupport = {
+    codeActionKind = {
+      valueSet = (function()
+        local res = vim.tbl_values(vim.lsp.protocol.CodeActionKind)
+        table.sort(res)
+        return res
+      end)()
+    }
   }
-  return {
-    -- enable snippet support
-    capabilities = capabilities,
-    -- map buffer local keybindings when the language server attaches
-    on_attach = on_attach,
+}
+
+local handlers = {
+  ["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    -- signs = false,
+    update_in_insert = false,
+    -- Disable virtual_text
+    virtual_text = false,
   }
-end
+  )
+}
 
--- lsp-install
-local function setup_servers()
-  require'lspinstall'.setup()
 
-  -- get all installed servers
-  local servers = require'lspinstall'.installed_servers()
-  -- ... add manually installed servers
-  table.insert(servers, "r_language_server")
+local lsp_installer = require "nvim-lsp-installer"
+-- Include servers to be installed by nvim-lsp-installer
+local servers = {
+  "sumneko_lua",
+  "texlab",
+}
 
-  for _, server in pairs(servers) do
-    local config = make_config()
-
-    -- language specific config
-    if server == "lua" then
-      config.settings = lua_settings
+for _, name in pairs(servers) do
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found then
+    if not server:is_installed() then
+      print("Installing " .. name)
+      server:install()
     end
-
-    if server == "r_language_server" then
-	-- config.settings = r_settings
-	config.handlers = r_handlers
-    end
-
-    require'lspconfig'[server].setup(config)
   end
 end
 
-setup_servers()
+local customize_server_opts = {
+  ["sumneko_lua"] = function(default_opts)
+    default_opts.settings = lua_settings
+  end,
+}
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function ()
-  setup_servers() -- reload installed servers
-  vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
+-- config servers already supported by nvim-lsp-installer
+lsp_installer.on_server_ready(function(server)
+	-- local config = make_config()
+  local default_opts = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    handlers = handlers,
+  }
+
+  -- language specific config
+  if customize_server_opts[server.name] then
+    customize_server_opts[server.name](default_opts)
+  end
+  server:setup(default_opts)
+end)
+
+-- until nvim-lsp-installer can support R
+local lspconfig = require 'lspconfig'
+lspconfig.r_language_server.setup({
+	-- map buffer local keybindings when the language server attaches
+	on_attach = on_attach,
+  capabilities = capabilities,
+	-- settings = {
+	-- 	diagnostics = false,
+	-- },
+	handlers = {
+		["textDocument/publishDiagnostics"] = vim.lsp.with(
+		vim.lsp.diagnostic.on_publish_diagnostics, {
+			underline = false,
+			signs = true,
+			update_in_insert = true,
+			-- Disable virtual_text
+			virtual_text = false,
+		}),
+	},
+})
 
