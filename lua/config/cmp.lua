@@ -1,5 +1,5 @@
 -- Configuration for nvim-cmp
--- <https://github.com/alpha2phi/dotfiles/blob/main/config/nvim/lua/defaults.lua>
+-- <https://github.com/alpha2phi/dotfiles/blob/main/config/nvim/lua/config/cmp.lua>
 local M = {}
 
 function M.setup()
@@ -76,8 +76,8 @@ function M.setup()
       },
       ["<Down>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Select },
       ["<Up>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Select },
-      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+      ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
       ["<C-e>"] = cmp.mapping.close(),
       ["<C-y>"] = cmp.mapping.confirm {
         behavior = cmp.ConfirmBehavior.Replace,
