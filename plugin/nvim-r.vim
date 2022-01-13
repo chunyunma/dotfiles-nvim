@@ -11,7 +11,8 @@ let R_rmdchunk = '``'
 let R_assign = 0
 nmap <LocalLeader>: :RSend 
 " use visidata to view data frames
-let R_csv_app = 'terminal:vd'
+" let R_csv_app = 'terminal:vd'
+let R_csv_app = 'tmux new-window /usr/local/Cellar/visidata/2.6.1/bin/vd'
 nmap <silent> <LocalLeader>vh :call RAction("viewobj", 
 	\", howto='topleft 11sp', nrows=5")<CR>
 " objects from kniting will not be placed in the global env
@@ -28,4 +29,6 @@ command RStart let oldft=&ft | set ft=r | exe 'set ft='.oldft |
 let R_nvimpager = "horizontal"
 " don't indent
 let r_indent_align_args = 0
+let r_indent_ess_comments = 0
+let r_indent_ess_compatible = 0
 
