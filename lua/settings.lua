@@ -1,6 +1,7 @@
 -- local utils = require('utils')
 
 local cmd = vim.cmd
+local opt = vim.opt -- to disable mouse
 local o = vim.o
 local wo = vim.wo
 local bo = vim.bo
@@ -8,6 +9,7 @@ local indent = 4
 
 cmd('syntax enable')
 cmd('filetype plugin indent on')
+opt.mouse = nil -- disable mouse
 
 bo.tabstop = indent
 bo.softtabstop = indent
