@@ -172,7 +172,8 @@ function M.setup()
             return trigger_characters
         end,
 },
-    experimental = { native_menu = false, ghost_text = false },
+    -- experimental = { native_menu = false, ghost_text = false },
+    view = {entries = "custom", ghost_text = false},
   }
 
   -- If you want insert `(` after select function or method item
