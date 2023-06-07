@@ -138,6 +138,7 @@ return require('packer').startup(function(use)
       "hrsh7th/nvim-cmp",
       requires = {
         "hrsh7th/cmp-nvim-lsp",
+        "jalvesaq/cmp-nvim-r",
         "hrsh7th/cmp-buffer",
         "quangnguyen30192/cmp-nvim-ultisnips",
         'quangnguyen30192/cmp-nvim-tags',
