@@ -69,9 +69,6 @@ return require('packer').startup(function(use)
     -- toggle comment
     use {'tomtom/tcomment_vim'}
 
-    -- tagbar for bird's eye view of doc
-    use {'preservim/tagbar'}
-
     -- edit simple tables
     use {'dhruvasagar/vim-table-mode'}
 
