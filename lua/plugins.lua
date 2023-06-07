@@ -9,8 +9,8 @@ return require('packer').startup(function(use)
     -- <https://github.com/p00f/nvim-ts-rainbow>
     use {'p00f/nvim-ts-rainbow'}
 
-    use {'vim-pandoc/vim-pandoc'}
-    use {'vim-pandoc/vim-pandoc-syntax'}
+    -- use {'vim-pandoc/vim-pandoc'}
+    -- use {'vim-pandoc/vim-pandoc-syntax'}
 
     use {'lervag/vimtex'}
     -- use {'lervag/vimtex', tag='v1.6'}
