@@ -113,10 +113,6 @@ return require('packer').startup(function(use)
   -- volatile section
   --
 
-    -- LSP config
-    use {'neovim/nvim-lspconfig'}
-    use {'williamboman/nvim-lsp-installer'}
-
     -- autocomplete
     use {'SirVer/ultisnips'}
     use {'honza/vim-snippets'}
@@ -156,6 +152,13 @@ return require('packer').startup(function(use)
         require("config.cmp").setup()
       end,
     }
+
+    -- LSP config
+    use {'neovim/nvim-lspconfig'}
+    use { "williamboman/mason.nvim" }
+    use { "williamboman/mason-lspconfig.nvim" }
+    -- use {'williamboman/nvim-lsp-installer'}
+
 
   -- better language parser (syntax highlight)
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }

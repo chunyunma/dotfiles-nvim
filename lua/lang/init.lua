@@ -2,43 +2,64 @@
 -- <https://github.com/kabouzeid/nvim-lspinstall/wiki> and
 -- <https://github.com/williamboman/nvim-lsp-installer/wiki/Advanced-Configuration>
 
+require("mason").setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        }
+    }
+})
+
+require("mason-lspconfig").setup {
+  ensure_installed = {
+    -- 'r_language_server',
+    'lua_ls',
+  },
+}
+
+local lspconfig = require("lspconfig")
+
+-- Mappings
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<leader>ll', vim.diagnostic.setloclist, opts)
+
 -- Your custom attach function for nvim-lspconfig goes here.
 local on_attach = function(client, bufnr)
 
-    local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-    end
-
-    local function buf_set_option(...)
-        vim.api.nvim_buf_set_option(bufnr, ...)
-    end
-
-    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    -- Enable completion triggered by <c-x><c-o>
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
-    local opts = {noremap = true, silent = true}
-    buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-    buf_set_keymap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>',opts)
-    buf_set_keymap('n', '<leader>law','<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<leader>lrw','<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    buf_set_keymap('n', '<leader>llw','<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>',opts)
-    buf_set_keymap('n', '<leader>lt','<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    buf_set_keymap('n', '<leader>lrn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-    buf_set_keymap('n', '<leader>lrf', '<cmd>lua vim.lsp.buf.references()<CR>',opts)
-    buf_set_keymap('n', '<leader>ld','<cmd>lua vim.diagnostic.open_float()<CR>',opts)
-    buf_set_keymap('n', '<leader>ll','<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-    buf_set_keymap('n', '<leader>lca', '<cmd>lua vim.lsp.buf.code_action()<CR>',opts)
+    local bufopts = {noremap = true, silent = true, buffer = bufnr}
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+    vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, bufopts)
+    vim.keymap.set('n', '<leader>law', vim.lsp.buf.add_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>lrw', vim.lsp.buf.remove_workspace_folder, bufopts)
+    vim.keymap.set('n', '<leader>llw', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, bufopts)
+    vim.keymap.set('n', '<leader>lt', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>lrn', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+    vim.keymap.set('n', '<space>f',
+    function() vim.lsp.buf.format { async = true } end,
+    bufopts)
 
     -- Set some keybinds conditional on server capabilities
     if client.server_capabilities.documentFormattingProvider then
-        buf_set_keymap("n", "<leader>lf","<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+        vim.keymap.set("n", "<leader>lf",
+        function() vim.lsp.buf.format { async = true } end, bufopts)
     elseif client.server_capabilities.documentRangeFormattingProvider then
-        buf_set_keymap("n", "<leader>lf","<cmd>lua vim.lsp.buf.range_formatting()<CR>", opts)
+        vim.keymap.set("n", "<leader>lf", vim.lsp.buf.range_formatting, bufopts)
     end
 
     -- Set autocommands conditional on server_capabilities
@@ -109,51 +130,57 @@ local handlers = {
 }
 
 
-local lsp_installer = require "nvim-lsp-installer"
--- Include servers to be installed by nvim-lsp-installer
-local servers = {
-  "sumneko_lua",
-  "texlab",
-}
+-- local lsp_installer = require "nvim-lsp-installer"
+-- -- Include servers to be installed by nvim-lsp-installer
+-- local servers = {
+--   "sumneko_lua",
+--   "texlab",
+-- }
 
-for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found then
-    if not server:is_installed() then
-      print("Installing " .. name)
-      server:install()
-    end
-  end
-end
 
-local customize_server_opts = {
-  ["sumneko_lua"] = function(default_opts)
-    default_opts.settings = lua_settings
-  end,
-}
+--
+-- for _, name in pairs(servers) do
+--   local server_is_found, server = lsp_installer.get_server(name)
+--   if server_is_found then
+--     if not server:is_installed() then
+--       print("Installing " .. name)
+--       server:install()
+--     end
+--   end
+-- end
+--
+-- local customize_server_opts = {
+--   ["lua_ls"] = function(default_opts)
+--     default_opts.settings = lua_settings
+--   end,
+-- }
 
 -- config servers already supported by nvim-lsp-installer
-lsp_installer.on_server_ready(function(server)
+-- lsp_installer.on_server_ready(function(server)
+lspconfig['lua_ls'].setup {
 	-- local config = make_config()
-  local default_opts = {
+  -- local default_opts = {
     on_attach = on_attach,
     capabilities = capabilities,
     handlers = handlers,
+    settings = lua_settings
   }
 
   -- language specific config
-  if customize_server_opts[server.name] then
-    customize_server_opts[server.name](default_opts)
-  end
-  server:setup(default_opts)
-end)
+  -- if customize_server_opts[server.name] then
+  --   customize_server_opts[server.name](default_opts)
+  -- end
+  -- server:setup(default_opts)
+-- end)
 
 -- until nvim-lsp-installer can support R
-local lspconfig = require 'lspconfig'
-lspconfig.r_language_server.setup({
+lspconfig.r_language_server.setup{
 	-- map buffer local keybindings when the language server attaches
-	on_attach = on_attach,
+  on_attach = on_attach,
+  -- flags = { debounce_text_changes = 150 },
   capabilities = capabilities,
+  -- seems to be equivalent to the next line, which is simpler and preferable
+  -- capabilities = require('cmp_nvim_lsp').default_capabilities(),
 	-- settings = {
 	-- 	diagnostics = false,
 	-- },
@@ -167,5 +194,9 @@ lspconfig.r_language_server.setup({
 			virtual_text = false,
 		}),
 	},
-})
+}
+--
 
+vim.g.LanguageClient_serverCommands = {
+    r = {'R', '--slave', '-e', 'languageserver::run()'}
+    }
