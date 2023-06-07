@@ -24,7 +24,10 @@ function M.setup()
   cmp.setup {
     formatting = {
       format = require("lspkind").cmp_format {
-        with_text = true,
+        -- updated based on README from lspkind <https://github.com/onsails/lspkind.nvim>
+        mode = 'symbol',
+        maxwidth = 50,
+        ellipsis_char = '...',
         menu = {
             nvim_lsp = "[LSP]",
             buffer = "[Buffer]",
