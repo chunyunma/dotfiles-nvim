@@ -4,7 +4,7 @@ vim.g.maplocalleader = ','
 
 vim.g.netrw_banner = 0
 -- temporary fix for the gx bug
-vim.g.netrw_nogx=1
+-- vim.g.netrw_nogx=1
 
 if vim.fn.has("mac") == 1 then
 	vim.g.python3_host_prog='/Users/chunyun/.pyenv/versions/neovim/bin/python'
