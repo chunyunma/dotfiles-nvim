@@ -13,24 +13,25 @@ end
 
 vim.g.sessionoptions="curdir,folds,resize,winsize"
 
-local fn = vim.fn
-local execute = vim.api.nvim_command
-
 -- Sensible defaults
 require('settings')
 
--- Auto install packer.nvim if not exists
-local install_path = fn.stdpath('data') .. '/site/pack/packer/opt/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-    execute('!git clone https://github.com/wbthomason/packer.nvim ' ..
-                install_path)
+-- set up lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-vim.cmd [[packadd packer.nvim]]
--- Auto compile when there are changes in plugins.lua
-vim.cmd 'autocmd BufWritePost plugins.lua PackerCompile'
+vim.opt.rtp:prepend(lazypath)
 
 -- Install plugins
-require('plugins')
+require('lazy').setup('plugins')
 
 -- Key mappings
 require('keymappings')

@@ -1,84 +1,84 @@
-return require('packer').startup(function(use)
+return {
 
   --
   -- stable section
   --
     -- Packer can manage itself as an optional plugin
-    use {'wbthomason/packer.nvim', opt = true}
+    {'wbthomason/packer.nvim', lazy = true},
 
     -- <https://github.com/p00f/nvim-ts-rainbow>
-    use {'p00f/nvim-ts-rainbow'}
+    'p00f/nvim-ts-rainbow',
 
-    -- use {'vim-pandoc/vim-pandoc'}
-    -- use {'vim-pandoc/vim-pandoc-syntax'}
+    -- 'vim-pandoc/vim-pandoc',
+    -- 'vim-pandoc/vim-pandoc-syntax',
 
-    use {'lervag/vimtex'}
-    -- use {'lervag/vimtex', tag='v1.6'}
-    -- use {'KeitaNakamura/tex-conceal.vim'}
+    'lervag/vimtex',
+    -- 'lervag/vimtex', tag='v1.6',
+    -- 'KeitaNakamura/tex-conceal.vim',
 
     -- To dianose syntax highlighting issues
-    -- use {'tpope/vim-scriptease'}
+    -- 'tpope/vim-scriptease',
 
     -- Development
-    use {'tpope/vim-surround'}
-    use {'wellle/targets.vim'}
+    'tpope/vim-surround',
+    'wellle/targets.vim',
 
     -- enable dot command for surround.vim
-    use {'tpope/vim-repeat'}
+    'tpope/vim-repeat',
 
     -- Color scheme
     -- <https://github.com/sainnhe/gruvbox-material/blob/master/doc/gruvbox-material.txt>
-    use {'sainnhe/gruvbox-material'} -- need `require('config.colorscheme')`
+    'sainnhe/gruvbox-material', -- need `dependencies('config.colorscheme')`
     -- use { 'chriskempson/base16-vim' } -- also need to enable plugin/color.vim
 
     -- helpful editing
-    use {'tpope/vim-unimpaired'}
+    'tpope/vim-unimpaired',
 
     -- work with netrw
-    use {'tpope/vim-vinegar'}
+    'tpope/vim-vinegar',
 
     -- easy git
-    use {'tpope/vim-fugitive'}
+    'tpope/vim-fugitive',
 
     -- Lua development
     -- <https://github.com/tjdevries/nlua.nvim>
-    use {'tjdevries/nlua.nvim'}
+    'tjdevries/nlua.nvim',
 
     -- fuzzy finder
-    use {'junegunn/fzf'}
-    use {'junegunn/fzf.vim'}
+    'junegunn/fzf',
+    'junegunn/fzf.vim',
 
     -- easy editing with s-expressions in Racket
     -- <https://github.com/tpope/vim-sexp-mappings-for-regular-people>
     -- <https://gist.github.com/cszentkiralyi/a9a4e78dc746e29e0cc8>
-    use{ 'guns/vim-sexp'}
-    use {'tpope/vim-sexp-mappings-for-regular-people'}
+    'guns/vim-sexp',
+    'tpope/vim-sexp-mappings-for-regular-people',
 
     -- navigate tmux
-    use {'christoomey/vim-tmux-navigator'}
+    'christoomey/vim-tmux-navigator',
 
     -- vim-slime to work with tmux
-    use {'jpalardy/vim-slime'}
+    'jpalardy/vim-slime',
 
     -- easy jump around like acejump for sublime
-    use {'easymotion/vim-easymotion'}
+    'easymotion/vim-easymotion',
 
     -- show marks
-    use {'kshenoy/vim-signature'}
+    'kshenoy/vim-signature',
 
     -- toggle comment
-    use {'tomtom/tcomment_vim'}
+    'tomtom/tcomment_vim',
 
     -- edit simple tables
-    use {'dhruvasagar/vim-table-mode'}
+    'dhruvasagar/vim-table-mode',
 
     -- work with R
-    use {'jalvesaq/Nvim-R', branch = 'master'}
+    {'jalvesaq/Nvim-R', branch = 'master'},
 
     -- Status line
     -- <https://github.com/shadmansaleh/lualine.nvim>
-    use {'nvim-lualine/lualine.nvim',
-    requires = {'kyazdani42/nvim-web-devicons', opt = true},
+    {'nvim-lualine/lualine.nvim',
+    dependencies = {'kyazdani42/nvim-web-devicons', lazy = true},
     config = function()
       require('lualine').setup{
         options = {
@@ -107,32 +107,32 @@ return require('packer').startup(function(use)
         extensions = { 'fzf', 'fugitive'}
       }
     end
-  }
+  },
 
   --
   -- volatile section
   --
 
     -- autocomplete
-    use {'SirVer/ultisnips'}
-    use {'honza/vim-snippets'}
+    'SirVer/ultisnips',
+    'honza/vim-snippets',
 
     -- -- <https://github.com/hrsh7th/nvim-compe>
-    -- use {'hrsh7th/nvim-compe'}
+    -- 'hrsh7th/nvim-compe',
     -- -- <https://github.com/ncm2/float-preview.nvim>
-    -- use {'ncm2/float-preview'}
+    -- 'ncm2/float-preview',
     -- new cmp
     -- use "tamago324/cmp-zsh" -- look this one up
-    use {
+    {
         "onsails/lspkind-nvim",
         config = function()
             require("lspkind").init()
         end,
-    }
+    },
 
-    use {
+    {
       "hrsh7th/nvim-cmp",
-      requires = {
+      dependencies = {
         "hrsh7th/cmp-nvim-lsp",
         "jalvesaq/cmp-nvim-r",
         "hrsh7th/cmp-buffer",
@@ -151,20 +151,21 @@ return require('packer').startup(function(use)
       config = function()
         require("config.cmp").setup()
       end,
-    }
+    },
 
     -- LSP config
-    use {'neovim/nvim-lspconfig'}
-    use { "williamboman/mason.nvim" }
-    use { "williamboman/mason-lspconfig.nvim" }
-    -- use {'williamboman/nvim-lsp-installer'}
+    'neovim/nvim-lspconfig',
+    'williamboman/mason.nvim',
+    'williamboman/mason-lspconfig.nvim',
+    -- 'williamboman/nvim-lsp-installer',
 
 
   -- better language parser (syntax highlight)
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+  { 'nvim-treesitter/nvim-treesitter', build = ':TSUpdate' },
 
   -- use {'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins'} -- python related
-  -- use {'zchee/deoplete-jedi'} -- python related
-  -- use {'Shougo/deoplete-lsp'} -- python related
+  -- 'zchee/deoplete-jedi', -- python related
+  -- 'Shougo/deoplete-lsp', -- python related
 
-end)
+}
+
