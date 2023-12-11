@@ -12,3 +12,10 @@ utils.map('n', '<C-L>', '<C-W><C-L>')
 utils.map('i', '<C-u>', '<C-g>u<C-u>')  -- Make <C-u> undo-friendly
 utils.map('i', '<C-w>', '<C-g>u<C-w>')  -- Make <C-w> undo-friendly
 utils.map('n', '<leader>w', '<Plug>(easymotion-bd-w)')
+
+utils.map("n", "<C-h>", "<Cmd>NvimTmuxNavigateLeft<CR>", { silent = true })
+utils.map("n", "<C-j>", "<Cmd>NvimTmuxNavigateDown<CR>", { silent = true })
+utils.map("n", "<C-k>", "<Cmd>NvimTmuxNavigateUp<CR>", { silent = true })
+utils.map("n", "<C-l>", "<Cmd>NvimTmuxNavigateRight<CR>", { silent = true })
+utils.map("n", "<C-\\>", "<Cmd>NvimTmuxNavigateLastActive<CR>", { silent = true })
+utils.map("n", "<C-Space>", "<Cmd>NvimTmuxNavigateNavigateNext<CR>", { silent = true })
