@@ -185,5 +185,7 @@ return {
   -- 'zchee/deoplete-jedi', -- python related
   -- 'Shougo/deoplete-lsp', -- python related
 
+  { 'aadv1k/gdoc.vim', build = './install.py' },
+
 }
 

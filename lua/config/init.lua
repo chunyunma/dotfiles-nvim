@@ -10,3 +10,5 @@ require('config.cmp')
 -- require('config.snippets')
 
 require('config.treesitter')
+
+require('config.gdoc')
