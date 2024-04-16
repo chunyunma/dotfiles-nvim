@@ -98,7 +98,7 @@ return {
     'dhruvasagar/vim-table-mode',
 
     -- work with R
-    {'jalvesaq/Nvim-R', branch = 'master'},
+    {'jalvesaq/Nvim-R', branch = 'master', lazy = false},
 
     -- Status line
     -- <https://github.com/shadmansaleh/lualine.nvim>
