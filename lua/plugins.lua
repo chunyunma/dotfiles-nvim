@@ -3,8 +3,6 @@ return {
   --
   -- stable section
   --
-    -- Packer can manage itself as an optional plugin
-    {'wbthomason/packer.nvim', lazy = true},
     -- <https://github.com/hiphish/rainbow-delimiters.nvim>
     'hiphish/rainbow-delimiters.nvim',
 
