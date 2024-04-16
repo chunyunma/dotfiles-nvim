@@ -12,7 +12,7 @@ let R_assign = 2
 nmap <LocalLeader>: :RSend 
 " use visidata to view data frames
 " let R_csv_app = 'terminal:vd'
-let R_csv_app = 'tmux new-window /usr/local/Cellar/visidata/2.11_1/bin/vd'
+let R_csv_app = 'tmux new-window /usr/local/Cellar/visidata/3.0.2_1/bin/vd'
 nmap <silent> <LocalLeader>vh :call RAction("viewobj", 
 	\", howto='topleft 11sp', nrows=5")<CR>
 " objects from kniting will not be placed in the global env
