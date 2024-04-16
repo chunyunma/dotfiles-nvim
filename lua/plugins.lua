@@ -5,9 +5,8 @@ return {
   --
     -- Packer can manage itself as an optional plugin
     {'wbthomason/packer.nvim', lazy = true},
-
-    -- <https://github.com/p00f/nvim-ts-rainbow>
-    'p00f/nvim-ts-rainbow',
+    -- <https://github.com/hiphish/rainbow-delimiters.nvim>
+    'hiphish/rainbow-delimiters.nvim',
 
     -- 'vim-pandoc/vim-pandoc',
     -- 'vim-pandoc/vim-pandoc-syntax',
