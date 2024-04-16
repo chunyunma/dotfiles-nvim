@@ -85,7 +85,17 @@ return {
     'kshenoy/vim-signature',
 
     -- toggle comment
-    'tomtom/tcomment_vim',
+    -- 'tomtom/tcomment_vim',
+    {
+      'numToStr/Comment.nvim',
+      opts = {
+        -- add any options here
+      },
+      lazy = false,
+      config = function()
+        require('Comment').setup()
+      end,
+    },
 
     -- edit simple tables
     'dhruvasagar/vim-table-mode',
