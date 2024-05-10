@@ -30,7 +30,7 @@ wo.colorcolumn = "80"
 -- wo.relativenumber = true
 wo.scrolloff = 8
 wo.cursorline = true
-o.clipboard = 'unnamed,unnamedplus'
+-- o.clipboard = 'unnamed,unnamedplus'
 
 bo.undofile = true
 o.undolevels = 10000

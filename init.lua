@@ -6,6 +6,10 @@ vim.g.netrw_banner = 0
 -- temporary fix for the gx bug
 -- vim.g.netrw_nogx=1
 
+-- vim.keymap.set('n', '<leader>c', require('osc52').copy_operator, {expr = true})
+-- vim.keymap.set('n', '<leader>cc', '<leader>c_', {remap = true})
+-- vim.keymap.set('v', '<leader>c', require('osc52').copy_visual)
+
 if vim.fn.has("mac") == 1 then
 	vim.g.python3_host_prog='/Users/chunyun/.pyenv/versions/neovim/bin/python'
 	vim.g.python_host_prog='/Users/chunyun/.pyenv/versions/neovim-py2/bin/python'
